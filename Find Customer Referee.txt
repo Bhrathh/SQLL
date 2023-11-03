@@ -1,0 +1,27 @@
+Input: 
+Customer table
+id	name	referee_id
+B08Z5FRC59	Will	None
+B08GM18NGW	Jane	None
+B08Z5HVF13	Alex	2
+B08Z5J2TJS	Bill	None
+B07V7WZ9MP	Zack	1
+B0BLT5BG4H	Mark	2
+
+Output: 
++------+
+| name |
++------+
+  Will 
+  Jane 
+  Bill 
+  Zack
+
+Find the names of the customer that are not referred by the customer with id = 2.
+
+Return the result table in any order.
+# Write your MySQL query statement below
+
+SELECT name 
+FROM Customer
+WHERE referee_ID <>2 OR referee_id IS NULL; 
