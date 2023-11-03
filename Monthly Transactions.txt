@@ -1,0 +1,21 @@
+Transactions table:
+
+ id    country  state     amount  trans_date 
+
+ 121   US       approved  1000    2018-12-18 
+ 122   US       declined  2000    2018-12-19 
+ 123   US       approved  2000    2019-01-01 
+ 124   DE       approved  2000    2019-01-07
+
+Write an SQL query to find for each month and country, the number of transactions and their total amount, the number of approved transactions and their total amount.
+
+Return the result table in any order.
+
+SELECT date_format(trans_date ,'%Y-%m') month,
+Country,
+COUNT(*) AS trans_count,
+SUM(CASE WHEN state= 'approved' THEN 1 ELSE 0 END) approved_count,
+SUM(amount) AS trans_total_amount,
+SUM(CASE WHEN state = 'approved' THEN amount ELSE 0 END) approved_total_amount
+FROM transactions
+GROUP BY date_format(trans_date ,'%Y-%m'),Country

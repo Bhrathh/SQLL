@@ -1,0 +1,31 @@
+Visits TABLE:
+
+visit_id	ASIN
+2	    B09Q879MYB
+4	    B08Z5QJ8HT
+5	    B0BX9DKRNS
+6	    B0892H6Z7R
+7	    B0C848T8FG
+8	    B08Z5HQ7H9
+
+
+Transactions TABLE:
+transaction_id	visit_id	   amount
+2	          5	             310
+3	          5	             300
+9	          5	             200
+12	          1	             910
+13	          2	             970
+
+ Write a solution to find the IDs of the users who visited without making any transactions and the number of times they made these types of visits.
+
+Return the result table sorted in any order.
+
+
+SELECT ASIN,COUNT(*) AS count_no_trans
+FROM Visits
+WHERE Visit_id NOT IN
+      (SELECT Visit_id
+       FROM Transactions
+       GROUP BY visit_id)
+ GROUP BY ASIN  

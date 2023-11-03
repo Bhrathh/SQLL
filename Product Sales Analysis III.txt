@@ -1,0 +1,22 @@
+PRODUCT TABLE
+ASIN	     product_name
+B08Z5HQ7H9	Nokia
+B08Z5HQ7H9	Apple
+B01MFG9TCH	Samsung
+
+Sales Table
+sale_id ASIN	        year 	quantity price
+1	B08Z5HQ7H9	2008	10	 5000
+2	B01MFG9TCH	2009	12	 5000
+7	B0BX2SH4P3	2011	15
+
+Write a solution to select the product id, year, quantity, and price for the first year of every product sold.
+
+Return the resulting table in any order.
+
+SELECT product_id,year AS first_year,quantity,price
+FROM
+(SELECT product_id,year,quantity,price,
+dense_rank() Over (partition by product_id order by year ASC) dns
+FROM sales) sub_sales
+WHERE dns=1;

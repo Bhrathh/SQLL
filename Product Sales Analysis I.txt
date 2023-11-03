@@ -1,0 +1,23 @@
+Sales
+sale_id 	product_id	year	quantity	price
+
+B0BLT1BGH	      100      2008	    10	         5000
+B1BRTHKPI	      100      2009	    12	         5000
+B0QWERYOP	      200      2011	    15	         9000
+
+
+Product
+product_id	product_name
+100	         Nokia
+200	         Apple
+300	         Samsung
+
+Write a solution to report the product_name, year, and price for each sale_id in the Sales table.
+
+Return the resulting table in any order.
+
+
+SELECT p.product_name,s.year,s.price
+FROM sales s
+LEFT JOIN product p
+ON s.product_id =p.product_id;
